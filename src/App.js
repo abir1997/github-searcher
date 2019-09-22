@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Github from './Github';
+import Header from './Components/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  
+
+  static defaultProps = {
+    clientID: '27UIER4gWlruH76SVHc1Xts6Bwl7iUF6',
+    domain: 'dev-sax926ea.au.auth0.com'
+  }
+
+  componentDidMount(){
+
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Github />
+      </div>
+    );
+  }
 }
 
 export default App;
