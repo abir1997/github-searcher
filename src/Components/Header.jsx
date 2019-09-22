@@ -10,15 +10,20 @@ class Header extends React.Component{
     onLogout(){
         this.props.onLogout();
     }
-    
+
     render(){
+        let page;
+        if(this.props.idToken){
+            page = <Nav.Link onClick = {this.onLogout.bind(this)}>Logout</Nav.Link>
+        }else{
+            page = <Nav.Link onClick = {this.onLogin.bind(this)}>Login</Nav.Link>
+        }
         return(
             <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">Github Searcher</Navbar.Brand>
             <Nav className="mr-auto">
               <Nav.Link href="#home"></Nav.Link>
-              <Nav.Link onClick = {this.onLogin.bind(this)}>Login</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              {page}
             </Nav>
             {/* <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -26,11 +26,11 @@ class App extends React.Component {
     this.lock = new Auth0Lock(this.props.clientID, this.props.domain);
 
     this.lock.on('authenticated', (authResult) => {
-      console.log(authResult);
+      // console.log(authResult);
 
-      this.lock.getProfile(authResult.idToken, (err, profile) => {
-        if (err) {
-          console.log(err);
+      this.lock.getProfile(authResult.accessToken, (error, profile) => {
+        if(error){
+          console.log(error);
           return;
         }
         // console.log(profile);
@@ -38,8 +38,8 @@ class App extends React.Component {
         this.setProfile(authResult.idToken, profile);
 
       });
-    });
 
+    });
     this.getProfile();
   }
 
