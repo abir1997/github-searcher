@@ -29,38 +29,73 @@ class App extends React.Component {
       console.log(authResult);
 
       this.lock.getProfile(authResult.idToken, (err, profile) => {
-        if(err){
+        if (err) {
           console.log(err);
           return;
         }
-       // console.log(profile);
+        // console.log(profile);
 
-       this.setProfile(authResult.idToken, profile);
+        this.setProfile(authResult.idToken, profile);
 
       });
     });
+
+    this.getProfile();
   }
 
-  setProfile(idToken, profile){
+  setProfile(idToken, profile) {
     localStorage.setItem('idToken', idToken);
     localStorage.setItem('profile', JSON.stringify(profile));
-    
+
     this.setState({
-      idToken : localStorage.getItem('idToken'),
-      profile : JSON.parse(localStorage.getItem('profile'))
+      idToken: localStorage.getItem('idToken'),
+      profile: JSON.parse(localStorage.getItem('profile'))
     });
+  }
+
+
+  getProfile() {
+    if (localStorage.getItem('idToken') != null) {
+      this.setState({
+        idToken: localStorage.getItem('idToken'),
+        profile: JSON.parse(localStorage.getItem('profile'))
+      }, () => {
+        console.log(this.state);
+      });
+    }
   }
 
   showLock() {
     this.lock.show();
   }
 
+
+  logout() {
+    this.setState({
+      idToken: '',
+      profile: {}
+    }, () => {
+      localStorage.removeItem('idToken');
+      localStorage.removeItem('profile');
+    });
+  }
+
   render() {
+    let gitH;
+    if (this.state.idToken) {
+      gitH = <Github />
+    } else {
+      gitH = "Click on Login to view";
+    }
     return (
       <div className="App">
         <Header
+          lock={this.lock}
+          idToken={this.state.idToken}
+          profile={this.state.profile}
+          onLogout={this.logout.bind(this)}
           onLogin={this.showLock.bind(this)} />
-        <Github />
+        {gitH}
       </div>
     );
   }

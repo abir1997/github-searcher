@@ -7,6 +7,10 @@ class Header extends React.Component{
         this.props.onLogin();
     }
 
+    onLogout(){
+        this.props.onLogout();
+    }
+    
     render(){
         return(
             <Navbar bg="dark" variant="dark">
