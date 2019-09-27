@@ -46,16 +46,16 @@ class Github extends React.Component {
         this.getProfile(this.state.username);
     }
 
-    render() {
-        return (
-            <div>
-                <section id="card">
-                    <Search seachProfile = {this.getProfile.bind(this)} />
-
-                </section>
-            </div>
+    render(){
+        return(
+          <div>
+            <section id="card">
+              <Search searchProfile={this.getProfile.bind(this)} />
+              <Profile userData={this.state}/>
+            </section>
+          </div>
         );
-    }
+      }
 }
 
 export default Github;
