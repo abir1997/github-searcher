@@ -2,7 +2,7 @@
 Used github api to display user info on a webpage.
 
 ## What I learned
-How to use Google's firebase. <br>
+How to use Auth0 for authentication and authorization. <br>
 How to use node package manager. <br>
 How to use react axios for api calls. <br>
 
